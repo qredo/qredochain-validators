@@ -1,0 +1,14 @@
+version: '3.7'
+services:
+  qredochain:
+    image: qredohub/qredochain:${QREDOCHAIN_DOCKER_VERSION}
+    command: start --network ${NETWORK} --snapshot --password ${SNAPSHOTS_PASSWORD} --datadir /data
+    container_name: qredochain
+    hostname: qredochain
+    ports:
+      - "26657:26657"
+      - "26656:26656"
+      - "26660:26660"
+    volumes:
+      - "${LOCAL_DATA_DIR}:/data"
+    stop_grace_period: 5s

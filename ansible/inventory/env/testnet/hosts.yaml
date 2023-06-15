@@ -1,0 +1,10 @@
+---
+all:
+  hosts:
+    node-1:
+      ansible_host: "10.56.58.206"
+      ansible_user: "ubuntu"
+
+qredochain:
+  hosts:
+    node-1:

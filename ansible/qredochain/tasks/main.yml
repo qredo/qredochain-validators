@@ -1,0 +1,25 @@
+---
+# tasks file for qredochain
+- name: System details
+  debug:
+    msg: "{{ ansible_facts['lsb']['release'] }}"
+
+- name: Install dependencies
+  ansible.builtin.include_tasks: install_dependencies.yml
+  when: ansible_facts['lsb']['release'] == "20.04"
+
+- name: Configure service username and home directory
+  ansible.builtin.include_tasks: init_user.yml
+  when: ansible_facts['lsb']['release'] == "20.04"
+
+- name: Download and verify qredochain binary
+  ansible.builtin.include_tasks: download_qredochain.yml
+  when: ansible_facts['lsb']['release'] == "20.04"
+
+- name: Download latest snapshot and init qredochain directoty
+  ansible.builtin.include_tasks: init_qredochain.yml
+  when: ansible_facts['lsb']['release'] == "20.04"
+
+- name: Configure systemd service
+  ansible.builtin.include_tasks: systemd.yml
+  when: ansible_facts['lsb']['release'] == "20.04"

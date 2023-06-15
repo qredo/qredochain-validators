@@ -1,5 +1,3 @@
-# EXTVAL 97
-
 ## 1. Overview
 
 ```

@@ -41,8 +41,8 @@ ansible
 
 # Environment Variables
 
-MAINNET  - all variables are located into inventory/env/mainnet/group_vars/all.yml
-TESTNET  - all variables are located into inventory/env/testnet/group_vars/all.yml
+* MAINNET  - all variables are located into inventory/env/mainnet/group_vars/all.yml
+* TESTNET  - all variables are located into inventory/env/testnet/group_vars/all.yml
 
 --------------------------------------------------------------------------------------------
 |           NAME            |     Description                                               |

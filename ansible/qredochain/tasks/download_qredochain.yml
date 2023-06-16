@@ -14,7 +14,7 @@
     dest: "{{ service_dir }}/tmp"
   loop:
   - "{{ qredochain_release_url }}"
-  - "{{ qredochain_release_url }}.gz.sig"
+  - "{{ qredochain_release_url }}.sig"
   changed_when: true
 
 - name: Extract qredochain  tar file

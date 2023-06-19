@@ -17,13 +17,22 @@
   - "{{ qredochain_release_url }}.sig"
   changed_when: true
 
+- name: Verify tar signature
+  ansible.buildin.shell: |
+    openssl dgst -sha256 -verify "/opt/qredochain/tmp/pub.pem" -signature "{{ qredochain_version }}-{{ qredochain_file_shor_sha }}.{{qredochain_file_sufix }}.sig" "{{ qredochain_version }}-{{ qredochain_file_shor_sha }}.{{qredochain_file_sufix }}"
+  register: verify_tar
+
+- name: Verify result 
+  ansible.buildin.shell: echo "Verify OK"
+  when: verify_tar.stdout == ""
+  
 - name: Extract qredochain  tar file
   ansible.builtin.unarchive:
     src: "{{service_dir }}/tmp/{{ service_name }}.{{ qredochain_version }}-{{ qredochain_file_shor_sha }}.{{qredochain_file_sufix }}"
     dest: "{{ service_dir }}"
     remote_src: yes
 
-- name: Give execute permissions
+- name: Set exec permissions
   ansible.builtin.file:
     path: "{{ service_dir }}/{{ service_name }}"
     owner: "{{ service_name }}"

@@ -14,7 +14,7 @@ The **Qredo Network** is a distributed peer-to-peer system built on top of the *
 
 **Tendermint** uses a proof of authority-based consensus mechanism by default. As of v1.9.0 `qredochain` can be upgraded from proof-of-authority to proof-of-stake, with QRDO forming the economic foundation of the network and a means by which validators are incited and rewarded.
 
-# 2. Nodes and arcitecture
+# 2. Nodes and architecture
 
 There are two types of nodes within the network:
 
@@ -75,4 +75,3 @@ The multiparty computation (MPC) infrastructure is also split between the two AW
 # 5. Installation instructions
 
 To learn how  to install an external validator node, see our [Installation guide](docs/installation.md).
-

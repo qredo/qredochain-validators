@@ -1,0 +1,26 @@
+---
+- name: Create service user
+  ansible.builtin.user:
+    name: "{{ service_name }}"
+    shell: /bin/bash
+    home: "{{ service_dir }}"
+    state: present
+  changed_when: true
+
+- name: Create directories
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ service_name }}"
+    group: "{{ service_name }}"
+    mode: 0770
+  loop:
+  - "{{ service_dir }}/tmp"
+
+- name: Upload  public key for signature verification
+  ansible.builtin.copy:
+    src: "./"
+    dest: "{{ service_dir }}/tmp"
+    owner: "{{ service_name }}"
+    group: "{{ service_name }}"
+    mode: 0755

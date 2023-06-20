@@ -1,0 +1,7 @@
+---
+- name: Install acl
+  ansible.builtin.apt:
+    state: latest
+    update_cache: true
+    pkg:
+      - acl

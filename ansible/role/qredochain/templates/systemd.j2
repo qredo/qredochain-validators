@@ -1,0 +1,24 @@
+[Unit]
+Description={{ service_description }}
+
+[Service]
+Type=simple
+
+User={{ service_name }}
+Group={{ service_name }}
+
+LimitNOFILE={{ systemd_limit_no_files }}
+
+WorkingDirectory={{ service_dir }}
+PermissionsStartOnly=true
+
+ExecStart={{ service_dir }}/{{ service_name }} start --network {{ env }}
+Restart=on-failure
+RestartSec=10s
+
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier={{ service_name }}
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,14 @@
+---
+- name: Create service config dir for {{ service_name }}
+  ansible.builtin.file:
+    path: "{{ systemd_conf_dir }}"
+    state: directory
+    mode: 0755
+
+- name: Install systemd unit file for {{ service_name }}
+  ansible.builtin.template:
+    src: systemd.j2
+    dest: "{{ systemd_dir }}/{{ service_name }}.service"
+    mode: 0755
+  notify:
+    - Reload daemon and restart service

@@ -17,20 +17,31 @@
   - "{{ qredochain_release_url }}.sig"
   changed_when: true
 
-- name: Verify tar signature
-  ansible.buildin.shell: |
-    openssl dgst -sha256 -verify "/opt/qredochain/tmp/pub.pem" -signature "{{ qredochain_version }}-{{ qredochain_file_shor_sha }}.{{qredochain_file_sufix }}.sig" "{{ qredochain_version }}-{{ qredochain_file_shor_sha }}.{{qredochain_file_sufix }}"
-  register: verify_tar
 
-- name: Verify result 
-  ansible.buildin.shell: echo "Verify OK"
-  when: verify_tar.stdout == ""
-  
+#- name: Verify signature
+#  ansible.buildin.command: "sh /opt/qredochain/tmp/verify_signature.sh"
+#  register: verify
+#  tags: db
+
+#- name: Verify result on OK
+#  debug: 
+#    msg: "Verified OK"
+#  when: verify.stdout == "Verified OK"
+#  tags: db
+
+#- name: Verify result on Failure
+#  debug:
+#    msg: "Verification Failure"
+#  when: verify.stdout == "Verification Failure"
+#  tags: db
+
 - name: Extract qredochain  tar file
   ansible.builtin.unarchive:
     src: "{{service_dir }}/tmp/{{ service_name }}.{{ qredochain_version }}-{{ qredochain_file_shor_sha }}.{{qredochain_file_sufix }}"
     dest: "{{ service_dir }}"
     remote_src: yes
+  when: verify.stdout == "Verified OK"
+  tags: db
 
 - name: Set exec permissions
   ansible.builtin.file:
@@ -39,5 +50,3 @@
     group: "{{ service_name }}"
     mode: 0755
   changed_when: true
-
-#- name: Verify qredochain signature

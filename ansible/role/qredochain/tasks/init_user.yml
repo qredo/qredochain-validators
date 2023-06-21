@@ -17,10 +17,13 @@
   loop:
   - "{{ service_dir }}/tmp"
 
-- name: Upload  public key for signature verification
+- name: Upload  public key  and verification script
   ansible.builtin.copy:
-    src: "./"
+    src: "./{{ item }}"
     dest: "{{ service_dir }}/tmp"
     owner: "{{ service_name }}"
     group: "{{ service_name }}"
     mode: 0755
+  loop:
+  - "pub.pem"
+  - "verify_signature.sh"

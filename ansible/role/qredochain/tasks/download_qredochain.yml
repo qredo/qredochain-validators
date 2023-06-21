@@ -40,8 +40,6 @@
     src: "{{service_dir }}/tmp/{{ service_name }}.{{ qredochain_version }}-{{ qredochain_file_shor_sha }}.{{qredochain_file_sufix }}"
     dest: "{{ service_dir }}"
     remote_src: yes
-  when: verify.stdout == "Verified OK"
-  tags: db
 
 - name: Set exec permissions
   ansible.builtin.file:

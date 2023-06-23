@@ -15,7 +15,7 @@
     group: "{{ service_name }}"
     mode: 0770
   loop:
-  - "{{ service_dir }}/tmp"
+    - "{{ service_dir }}/tmp"
 
 - name: Upload  public key  and verification script
   ansible.builtin.copy:
@@ -25,5 +25,5 @@
     group: "{{ service_name }}"
     mode: 0755
   loop:
-  - "pub.pem"
-  - "verify_signature.sh"
+    - "pub.pem"
+    - "verify_signature.sh"

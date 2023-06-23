@@ -6,3 +6,4 @@ systemd_limit_no_files: 50000
 service_description: "Qredochain node"
 systemd_dir: "/etc/systemd/system"
 systemd_conf_dir: "{{ systemd_dir }}/{{ service_name }}.service.d"
+qredochain_tar_file: "{{service_dir }}/tmp/{{ service_name }}.{{ qredochain_version }}-{{ qredochain_file_shor_sha }}.{{qredochain_file_sufix }}"

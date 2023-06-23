@@ -12,7 +12,7 @@ LimitNOFILE={{ systemd_limit_no_files }}
 WorkingDirectory={{ service_dir }}
 PermissionsStartOnly=true
 
-ExecStart={{ service_dir }}/{{ service_name }} start --network {{ env }}
+ExecStart={{ service_dir }}/{{ service_name }} start --network {{ network }}
 Restart=on-failure
 RestartSec=10s
 

@@ -1,8 +1,0 @@
----
-# defaults file for qredochain
-service_name: "qredochain"
-service_dir: "/opt/{{ service_name }}"
-systemd_limit_no_files: 50000
-service_description: "Qredochain node"
-systemd_dir: "/etc/systemd/system"
-systemd_conf_dir: "{{ systemd_dir }}/{{ service_name }}.service.d"

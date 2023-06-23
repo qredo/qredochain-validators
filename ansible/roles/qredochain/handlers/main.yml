@@ -1,5 +1,4 @@
 ---
-# handlers file for qredochain
 - name: Reload daemon and restart service
   ansible.builtin.systemd:
     name: "{{ service_name }}"

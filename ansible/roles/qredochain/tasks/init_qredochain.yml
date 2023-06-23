@@ -1,0 +1,8 @@
+---
+- name: Init qredochain data directory and configs
+  become_user: "{{ service_name }}"
+  ansible.builtin.shell: |
+    {{ service_dir }}/{{ service_name }} init --network {{ network }} --snapshot --password {{ qredochain_snapshot_auth }}
+  args:
+    executable: /bin/bash
+  changed_when: true

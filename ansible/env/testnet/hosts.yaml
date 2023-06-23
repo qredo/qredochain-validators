@@ -1,10 +1,6 @@
 ---
 all:
   hosts:
-    node-1:
+    validator-node:
       ansible_host: "63.35.218.124"
       ansible_user: "ubuntu"
-
-qredochain:
-  hosts:
-    node-1:

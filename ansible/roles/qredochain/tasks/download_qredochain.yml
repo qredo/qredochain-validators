@@ -13,8 +13,8 @@
     url: "{{ item }}"
     dest: "{{ service_dir }}/tmp"
   loop:
-  - "{{ qredochain_release_url }}"
-  - "{{ qredochain_release_url }}.sig"
+    - "{{ qredochain_release_url }}"
+    - "{{ qredochain_release_url }}.sig"
   changed_when: true
 
 
@@ -35,9 +35,9 @@
 #  when: verify.stdout == "Verification Failure"
 #  tags: db
 
-- name: Extract qredochain  tar file
+- name: Extract qredochain tar file
   ansible.builtin.unarchive:
-    src: "{{service_dir }}/tmp/{{ service_name }}.{{ qredochain_version }}-{{ qredochain_file_shor_sha }}.{{qredochain_file_sufix }}"
+    src: "{{service_dir }}/tmp/{{ qredochain_tar }}"
     dest: "{{ service_dir }}"
     remote_src: yes
 
@@ -46,5 +46,5 @@
     path: "{{ service_dir }}/{{ service_name }}"
     owner: "{{ service_name }}"
     group: "{{ service_name }}"
-    mode: 0755
+    mode: a+x
   changed_when: true
